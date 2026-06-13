@@ -1,0 +1,97 @@
+# ==================================================
+# SerpVision WordPress — Security + Routing Rules
+# ==================================================
+
+# --------------------------------------------------
+# 1. Disable directory listing
+# --------------------------------------------------
+Options -Indexes
+
+# --------------------------------------------------
+# 2. Block access to sensitive files
+# --------------------------------------------------
+<FilesMatch "^(wp-config\.php|readme\.html|license\.txt|wp-cli\.phar|composer\.(json|lock)|package(-lock)?\.json|yarn\.lock|\.env)$">
+    Require all denied
+</FilesMatch>
+
+# Block all dot-files (.htaccess, .git, .env, etc.)
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+# --------------------------------------------------
+# 3. Block XML-RPC (top brute-force attack vector)
+# --------------------------------------------------
+<Files "xmlrpc.php">
+    Require all denied
+</Files>
+
+# --------------------------------------------------
+# 4. HTTP Security Headers
+# --------------------------------------------------
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+    Header unset X-Powered-By
+    Header unset Server
+</IfModule>
+
+# --------------------------------------------------
+# 5. WordPress rewrite + inline security rules
+# --------------------------------------------------
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+
+# Block author enumeration (?author=1,2,3 scans)
+RewriteCond %{QUERY_STRING} author=\d [NC]
+RewriteRule .* - [F,L]
+
+# Block PHP execution inside uploads directory
+RewriteRule ^wp-content/uploads/.*\.(php|php5|php7|phtml|phar)$ - [F,NC,L]
+
+# Block direct access to wp-admin/includes
+RewriteRule ^wp-admin/includes/ - [F,L]
+
+# Block direct access to wp-includes PHP files
+# (wp-includes/ms-files.php is an exception used by multisite — excluded)
+RewriteCond %{REQUEST_URI} !^/wp-includes/ms-files\.php
+RewriteRule ^wp-includes/[^/]+\.php$ - [F,L]
+RewriteRule ^wp-includes/js/tinymce/langs/.+\.php - [F,L]
+RewriteRule ^wp-includes/theme-compat/ - [F,L]
+
+# Block common PHP injection payloads in query strings
+RewriteCond %{QUERY_STRING} (eval\(|base64_decode\(|proc_open\(|popen\(|passthru\(|shell_exec\(|system\(|phpinfo\() [NC]
+RewriteRule .* - [F,L]
+
+# WordPress routing (must be last)
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# --------------------------------------------------
+# 6. Limit HTTP methods (only allow GET, POST, HEAD)
+# --------------------------------------------------
+<LimitExcept GET POST HEAD>
+    Require all denied
+</LimitExcept>
+
+# --------------------------------------------------
+# 7. Prevent script injection via uploaded files
+# --------------------------------------------------
+<FilesMatch "\.(php|php5|php7|phtml|phar|cgi|pl|py|jsp|asp|aspx|sh|bash)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+</FilesMatch>
+
+# Allow WordPress PHP files to run normally
+<FilesMatch "^(index|wp-login|wp-cron|wp-settings|wp-blog-header|wp-load|wp-mail|wp-signup|wp-activate|wp-comments-post|wp-links-opml|wp-trackback)\.php$">
+    Require all granted
+</FilesMatch>

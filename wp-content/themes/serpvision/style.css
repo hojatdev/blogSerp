@@ -1,0 +1,55 @@
+/*
+Theme Name: SerpVision
+Theme URI: https://serpvision.com
+Author: SerpVision
+Author URI: https://serpvision.com
+Description: Marketing site theme for the SerpVision SEO decision platform. Tailwind-based, with custom page templates for rank tracking, SEO audit, competitor analysis, pricing, blog and more.
+Version: 1.0.0
+Requires at least: 6.0
+Tested up to: 7.0
+Requires PHP: 8.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: serpvision
+*/
+
+body { font-family: 'Inter', sans-serif; }
+.nav-drawer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+.nav-drawer.is-open { max-height: 560px; }
+.faq-body { max-height: 0; overflow: hidden; opacity: 0; transition: max-height .32s ease, opacity .22s ease; }
+.faq-body.is-open { max-height: 260px; opacity: 1; }
+.faq-item.is-open .faq-icon { transform: rotate(45deg); }
+.faq-icon { transition: transform .22s ease; }
+input[type="range"] { accent-color: #4f46e5; }
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+input[type="number"] { -moz-appearance: textfield; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+/* Post / page content typography (Tailwind CDN has no typography plugin) */
+.post-content { font-size: 1.0625rem; line-height: 1.8; }
+.post-content > * + * { margin-top: 1.25rem; }
+.post-content h2 { font-size: 1.6rem; font-weight: 800; color: #0f172a; margin-top: 2.5rem; line-height: 1.3; }
+.post-content h3 { font-size: 1.3rem; font-weight: 700; color: #0f172a; margin-top: 2rem; line-height: 1.35; }
+.post-content h4 { font-size: 1.125rem; font-weight: 700; color: #0f172a; margin-top: 1.5rem; }
+.post-content p { color: #334155; }
+.post-content a { color: #4f46e5; text-decoration: underline; text-underline-offset: 2px; }
+.post-content a:hover { color: #4338ca; }
+.post-content ul, .post-content ol { padding-left: 1.5rem; }
+.post-content ul { list-style: disc; }
+.post-content ol { list-style: decimal; }
+.post-content li { margin-top: .5rem; }
+.post-content blockquote { border-left: 4px solid #6366f1; background: #eef2ff; padding: 1rem 1.25rem; border-radius: .5rem; color: #3730a3; font-style: italic; }
+.post-content img { border-radius: 1rem; height: auto; max-width: 100%; }
+.post-content pre { background: #0f172a; color: #e2e8f0; padding: 1rem 1.25rem; border-radius: .75rem; overflow-x: auto; font-size: .9rem; }
+.post-content code { background: #f1f5f9; padding: .15rem .4rem; border-radius: .3rem; font-size: .9em; }
+.post-content pre code { background: transparent; padding: 0; }
+.post-content table { width: 100%; border-collapse: collapse; }
+.post-content th, .post-content td { border: 1px solid #e2e8f0; padding: .6rem .8rem; text-align: left; }
+.post-content th { background: #f8fafc; font-weight: 700; }
+
+/* Pagination (paginate_links / the_posts_pagination output) */
+.serpvision-pagination .page-numbers, .serpvision-pagination .nav-links { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; list-style: none; padding: 0; margin: 0; }
+.serpvision-pagination a.page-numbers, .serpvision-pagination span.page-numbers { display: inline-flex; align-items: center; justify-content: center; min-width: 2.5rem; height: 2.5rem; padding: 0 .5rem; border-radius: .75rem; border: 1px solid #e2e8f0; background: #fff; color: #475569; font-size: .875rem; font-weight: 600; text-decoration: none; transition: all .15s ease; }
+.serpvision-pagination a.page-numbers:hover { background: #f8fafc; color: #0f172a; }
+.serpvision-pagination span.current { background: #4f46e5; border-color: #4f46e5; color: #fff; }

@@ -1,0 +1,27 @@
+# Sensitive config
+wp-config.php
+
+# WordPress uploads
+wp-content/uploads/
+
+# WordPress cache
+wp-content/cache/
+wp-content/upgrade/
+
+# WordPress backup files
+wp-content/backup-db/
+wp-content/advanced-cache.php
+wp-content/wp-cache-config.php
+
+# Logs
+*.log
+debug.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+*.swp
+*.swo
