@@ -1,28 +1,15 @@
-# Sensitive config
-wp-config.php
+# Ignore everything
+*
 
-# WordPress uploads
-wp-content/uploads/
+# Except the theme and workflow
+!.github/
+!.github/**
+!wp-content/
+!wp-content/themes/
+!wp-content/themes/serpvision/
+!wp-content/themes/serpvision/**
+!.gitignore
 
-# WordPress cache
-wp-content/cache/
-wp-content/upgrade/
-
-# WordPress backup files
-wp-content/backup-db/
-wp-content/advanced-cache.php
-wp-content/wp-cache-config.php
-
-# Logs
-*.log
-debug.log
-wp-content/wflogs/
-
-# OS files
-.DS_Store
-Thumbs.db
-
-# Editor files
-.vscode/
-*.swp
-*.swo
+# Re-ignore inside theme
+wp-content/themes/serpvision/node_modules/
+wp-content/themes/serpvision/.cache/
