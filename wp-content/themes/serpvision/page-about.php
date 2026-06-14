@@ -37,11 +37,11 @@
 			</div>
 		</div>
 	</section>
-	
+
     <section class="py-16 sm:py-20">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 			<div class="max-w-3xl mb-10">
-				<h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">Why we are building Serpvision</h2>
+				<h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">Why we are building Serpvision?</h2>
 				<p class="text-slate-500 leading-relaxed">Most SEO tools show a lot of data. That is useful, but it can also make simple decisions harder. Serpvision focuses on the signals teams actually need: what changed, why it matters, and what to check next.</p>
 			</div>
 			<div class="grid md:grid-cols-3 gap-6">
