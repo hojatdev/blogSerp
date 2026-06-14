@@ -39,7 +39,7 @@
 						$url = get_theme_mod( $key );
 						if ( ! $url ) continue; ?>
 						<a href="<?php echo esc_url( $url ); ?>" aria-label="<?php echo esc_attr( $icon['label'] ); ?>" rel="noopener noreferrer" target="_blank" class="w-10 h-10 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm flex items-center justify-center text-slate-300 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-200 active:scale-95">
-							<?php echo $icon['svg']; ?>
+							<?php echo wp_kses( $icon['svg'], [ 'svg' => [ 'class' => [], 'viewBox' => [], 'fill' => [], 'aria-hidden' => [] ], 'path' => [ 'd' => [], 'stroke-linecap' => [], 'stroke-linejoin' => [] ] ] ); ?>
 						</a>
 					<?php endforeach; ?>
 				</div>

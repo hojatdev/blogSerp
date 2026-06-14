@@ -4,11 +4,10 @@
 		<meta charset="<?php bloginfo('charset'); ?>">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="icon" type="image/svg+xml" href="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/serpvision-favicon.svg">
-		<?php wp_head(); ?>
-
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+		<?php wp_head(); ?>
 	</head>
 	<body class="bg-slate-50 text-slate-900 antialiased">
 		<a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-indigo-700 focus:shadow-lg">Skip to content</a>
@@ -84,32 +83,32 @@
 			<div data-role="nav-drawer" class="nav-drawer bg-white border-t border-slate-200/80 md:hidden">
 				<div class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-1">
 					<a href="<?php echo esc_url(home_url('/')); ?>"
-					   class="<?php echo esc_attr(serpvision_nav_link_class('/')); ?>"
+					   class="<?php echo esc_attr(serpvision_nav_link_class('/', 'mobile')); ?>"
 					   <?php echo serpvision_aria_current('/'); ?>>
 						Home
 					</a>
 					<a href="<?php echo esc_url(home_url('/rank-tracking/')); ?>"
-					   class="<?php echo esc_attr(serpvision_nav_link_class('/rank-tracking/')); ?>"
+					   class="<?php echo esc_attr(serpvision_nav_link_class('/rank-tracking/', 'mobile')); ?>"
 					   <?php echo serpvision_aria_current('/rank-tracking/'); ?>>
 						Rank Tracking
 					</a>
 					<a href="<?php echo esc_url(home_url('/seo-audit/')); ?>"
-					   class="<?php echo esc_attr(serpvision_nav_link_class('/seo-audit/')); ?>"
+					   class="<?php echo esc_attr(serpvision_nav_link_class('/seo-audit/', 'mobile')); ?>"
 					   <?php echo serpvision_aria_current('/seo-audit/'); ?>>
 						SEO Audit
 					</a>
 					<a href="<?php echo esc_url(home_url('/competitor-analysis/')); ?>"
-					   class="<?php echo esc_attr(serpvision_nav_link_class('/competitor-analysis/')); ?>"
+					   class="<?php echo esc_attr(serpvision_nav_link_class('/competitor-analysis/', 'mobile')); ?>"
 					   <?php echo serpvision_aria_current('/competitor-analysis/'); ?>>
 						Competitors
 					</a>
 					<a href="<?php echo esc_url(home_url('/blog/')); ?>"
-					   class="<?php echo esc_attr(serpvision_nav_link_class('/blog/')); ?>"
+					   class="<?php echo esc_attr(serpvision_nav_link_class('/blog/', 'mobile')); ?>"
 					   <?php echo serpvision_aria_current('/blog/'); ?>>
 						Blog
 					</a>
 					<a href="<?php echo esc_url(home_url('/pricing/')); ?>"
-					   class="<?php echo esc_attr(serpvision_nav_link_class('/pricing/')); ?>"
+					   class="<?php echo esc_attr(serpvision_nav_link_class('/pricing/', 'mobile')); ?>"
 					   <?php echo serpvision_aria_current('/pricing/'); ?>>
 						Pricing
 					</a>

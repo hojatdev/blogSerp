@@ -45,7 +45,8 @@ add_action('wp_enqueue_scripts', 'serpvision_enqueue_assets');
 
 function serpvision_is_active_path($path) {
     $target_path = trim($path, '/');
-    $current_path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+    $parsed = parse_url( sanitize_url( $_SERVER['REQUEST_URI'] ), PHP_URL_PATH );
+    $current_path = trim( $parsed ?: '', '/' );
 
     // Home page
     if ($target_path === '') {
@@ -57,11 +58,11 @@ function serpvision_is_active_path($path) {
     return $current_path === $target_path;
 }
 
-function serpvision_nav_link_class($path, $variant = 'mobile') {
-    if ($variant === 'desktop') {
-        $base_class = 'px-3 py-2 text-sm font-medium rounded-lg transition-colors';
-    } else {
+function serpvision_nav_link_class($path, $variant = 'desktop') {
+    if ($variant === 'mobile') {
         $base_class = 'px-3 py-3 text-sm font-medium rounded-lg transition-colors';
+    } else {
+        $base_class = 'px-3 py-2 text-sm font-medium rounded-lg transition-colors';
     }
 
     if (serpvision_is_active_path($path)) {
@@ -107,8 +108,8 @@ remove_action('template_redirect', 'rest_output_link_header', 11);
 
 // 6. Block author enumeration (?author=1 scans reveal usernames)
 add_action('template_redirect', function() {
-    if ( ! is_admin() && isset($_GET['author']) ) {
-        wp_die('Access denied.', 'Forbidden', ['response' => 403]);
+    if ( isset( $_GET['author'] ) && ! current_user_can( 'list_users' ) ) {
+        wp_die( 'Access denied.', 'Forbidden', [ 'response' => 403 ] );
     }
 });
 
@@ -286,7 +287,13 @@ function serpvision_reading_time( $post_id = null ) {
 
 function serpvision_seo_head() {
     $is_post     = is_singular( 'post' );
-    $canonical   = is_front_page() ? home_url( '/' ) : (string) get_permalink();
+    if ( is_front_page() ) {
+        $canonical = home_url( '/' );
+    } elseif ( is_singular() ) {
+        $canonical = (string) get_permalink();
+    } else {
+        return;
+    }
     $description = serpvision_get_meta_description();
     $title       = wp_get_document_title();
     $og_type     = $is_post ? 'article' : 'website';

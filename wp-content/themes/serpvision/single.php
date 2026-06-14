@@ -35,11 +35,10 @@
 					<?php the_content(); ?>
 				</div>
 
-				<?php
-				$tags = get_the_tag_list( '', '' );
+				<?php $tags = get_the_tags();
 				if ( $tags ) : ?>
 					<div class="mt-10 flex flex-wrap gap-2">
-						<?php foreach ( get_the_tags() as $tag ) : ?>
+						<?php foreach ( $tags as $tag ) : ?>
 							<a href="<?php echo esc_url( get_tag_link( $tag->term_id ) ); ?>" class="inline-flex items-center rounded-full bg-slate-100 hover:bg-slate-200 px-3 py-1 text-xs font-medium text-slate-600 transition-colors">#<?php echo esc_html( $tag->name ); ?></a>
 						<?php endforeach; ?>
 					</div>
