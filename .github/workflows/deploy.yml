@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -20,7 +23,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21
           local-dir: ./wp-content/themes/serpvision/
-          server-dir: /wp-content/themes/serpvision/
+          server-dir: ./wp-content/themes/serpvision/
           exclude: |
             **/.git*
             **/.git*/**
