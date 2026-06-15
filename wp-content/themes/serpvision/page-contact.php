@@ -13,7 +13,7 @@
 
                         <div>
                             <p class="inline-flex items-center rounded-full bg-white border border-slate-200 px-3 py-1 text-xs font-semibold text-indigo-700 mb-5 shadow-sm">
-                                Contact Serpvision +044 2358755
+                                Contact Serpvision
                             </p>
 
                             <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-slate-900 mb-6">
