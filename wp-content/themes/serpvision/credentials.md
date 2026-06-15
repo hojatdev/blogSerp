@@ -54,6 +54,13 @@ Public:  C:\Users\RED LINE\.ssh\id_ed25519.pub
 | پنل مدیریت | `http://blog.serpvision.net/wp-admin` |
 | مسیر فایل‌ها روی سرور | `/home/serpvision/web/blog.serpvision.net/public_html/` |
 
+**ادمین‌های WordPress:**
+
+| Username | Password | Email |
+|---|---|---|
+| `hojatdev` | `HZztBdp0KPGC$(BLh8BVj))g` | — |
+| `ali.shs1994` | `@K1cFsK)T!nGtsGIN&gQqGpw` | `ali.shs1994@gmail.com` |
+
 ---
 
 ## دیتابیس WordPress
